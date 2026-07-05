@@ -71,7 +71,7 @@ def test_queries(engine, doc_id, queries):
 
     for query in queries:
         start = time.perf_counter()
-        results = engine.retrieve(query, top_k=3)
+        results = engine.retrieve(query, top_k=3, doc_id=doc_id)
         elapsed = (time.perf_counter() - start) * 1000
 
         print(f"  Q: {query}")
@@ -96,10 +96,10 @@ def main():
     engine = Engram(config)
 
     pdf_files = [
-        r"C:\Users\arun0\Videos\CV\Attention_all_is_you_need.pdf",
-        r"C:\Users\arun0\Videos\CV\DeepSeek_V4.pdf",
-        r"C:\Users\arun0\Videos\CV\Rich_Dad_Poor_Dad.pdf",
-        r"C:\Users\arun0\Videos\CV\Think-And-Grow-Rich_2011-06.pdf",
+        r"C:\Users\arun0\Videos\CV\Rich Dad Poor Dad.pdf",
+        r"C:\Users\arun0\Videos\CV\Think-And-Grow-Rich-Napoleon-Hill.pdf",
+        r"C:\Users\arun0\Videos\CV\Rich Dad Poor Dad.pdf",
+        r"C:\Users\arun0\Videos\CV\Think-And-Grow-Rich-Napoleon-Hill.pdf",
     ]
 
     doc_ids = []

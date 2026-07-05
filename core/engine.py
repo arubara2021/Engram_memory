@@ -302,7 +302,7 @@ class Engram:
         try:
             mod = importlib.import_module("engram.retrieve.reranker")
             reranker = mod.ReRanker(self.config)
-            chunks = list({r.chunk for r in results})
+            chunks = list({r.chunk.chunk_id: r.chunk for r in results}.values())
             return reranker.rerank(results, query, chunks=chunks)
         except ImportError:
             pass
