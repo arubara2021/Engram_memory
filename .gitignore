@@ -1,0 +1,102 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dylib
+
+# Virtual environments
+.env/
+venv/
+.venv/
+ENV/
+env/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Compiled C/C++ extensions
+*.o
+*.obj
+*.exe
+*.pdb
+*.dll
+*.so
+*.a
+*.lib
+*.exp
+*.ilk
+*.map
+
+# Engram-specific caches and build outputs
+.formula_cache/
+build_cache/
+*.sqlite
+*.db
+*.pkl
+*.pickle
+*.parquet
+
+# Test outputs (PDFs, logs, generated reports)
+*.log
+*.tmp
+test_output/
+coverage/
+htmlcov/
+.pytest_cache/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter Notebooks (if used)
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.iml
+
+# Type checking / linting
+.pytype/
+*.stub
+
+# Large files (adjust as needed)
+*.pdf
+*.zip
+*.tar.gz
+*.7z
+*.rar
+*.mp4
+*.avi
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS junk
+.DS_Store
+._*

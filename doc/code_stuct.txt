@@ -1,0 +1,111 @@
+engram/
+│
+├── __init__.py                   # Public API: from engram import Engram, EngramConfig
+├── _version.py                   # Version string
+├── py.typed                      # PEP 561 typed marker
+│
+├── core/
+│   ├── __init__.py
+│   ├── engine.py                 # Engram class — main orchestrator
+│   ├── config.py                 # EngramConfig — all tunable parameters
+│   ├── types.py                  # Dataclasses, enums, type definitions
+│   └── registry.py               # Parser registry, chunker registry, backend registry
+│
+├── ingest/
+│   ├── __init__.py
+│   ├── auto.py                   # FormatDetector — sniffs file type
+│   ├── base.py                   # BaseParser — abstract interface
+│   ├── pdf.py                    # PDFParser — PyMuPDF
+│   ├── office.py                 # OfficeParser — DOCX, PPTX, XLSX
+│   ├── markup.py                 # MarkupParser — HTML, Markdown, RST
+│   ├── data.py                   # DataParser — JSON, YAML, CSV, XML, TOML
+│   ├── code.py                   # CodeParser — source code, AST-aware
+│   ├── text.py                   # TextParser — plain text, logs, email
+│   ├── image.py                  # ImageParser — OCR
+│   ├── docling_bridge.py         # DoclingBridge — optional Docling backend
+│   ├── cleaner.py                # TextCleaner — unicode, ligatures, whitespace
+│   └── metadata.py               # MetadataDetector — title, domain, language
+│
+├── chunk/
+│   ├── __init__.py
+│   ├── base.py                   # BaseChunker — abstract interface
+│   ├── recursive.py              # RecursiveChunker — default strategy
+│   ├── hierarchical.py           # HierarchicalChunker — parent + child
+│   ├── semantic.py               # SemanticChunker — embedding boundary detection
+│   ├── page.py                   # PageChunker — one chunk per page
+│   ├── code.py                   # CodeChunker — function/class boundaries
+│   ├── overlap.py                # OverlapHandler — sentence overlap between chunks
+│   ├── reference.py              # ReferenceStripper — bibliography removal
+│   ├── splitter.py               # SentenceSplitter — boundary detection
+│   └── factory.py                # ChunkerFactory — strategy name → chunker class
+│
+├── index/
+│   ├── __init__.py
+│   ├── concept.py                # ConceptExtractor — TF-IDF + heuristics
+│   ├── hash_table.py             # MultiHashTable — FNV-1a, Murmur3, DJB2
+│   ├── ngram.py                  # NgramIndexer — n-gram generation + registration
+│   ├── graph.py                  # ConceptGraph — co-occurrence relationships
+│   ├── builder.py                # IndexBuilder — orchestrates all indexing
+│   └── cache.py                  # ApproximateCache — LSH-based repeated query cache
+│
+├── embed/
+│   ├── __init__.py
+│   ├── base.py                   # EmbeddingBackend — abstract interface
+│   ├── local.py                  # LocalEmbedder — sentence-transformers, ONNX
+│   ├── remote.py                 # RemoteEmbedder — API-based embeddings
+│   ├── store.py                  # VectorStore — in-memory cosine similarity
+│   ├── hnsw.py                   # HNSWStore — approximate nearest neighbor
+│   └── pipeline.py               # EmbeddingPipeline — orchestrates embed + store
+│
+├── retrieve/
+│   ├── __init__.py
+│   ├── hash_retriever.py         # HashRetriever — O(1) keyword retrieval
+│   ├── vector_retriever.py       # VectorRetriever — cosine similarity retrieval
+│   ├── dual.py                   # DualRetriever — merges hash + vector
+│   ├── reranker.py               # ReRanker — multi-layer scoring
+│   ├── context_gate.py           # ContextGate — controls chunk count returned
+│   ├── prefetch.py               # Prefetcher — predictive LRU cache
+│   ├── expansion.py              # QueryExpander — fallback when results insufficient
+│   └── pipeline.py               # RetrievalPipeline — full retrieval orchestration
+│
+├── generate/
+│   ├── __init__.py
+│   ├── base.py                   # LLMBackend — abstract interface
+│   ├── deepseek.py               # DeepSeekBackend
+│   ├── openai.py                 # OpenAIBackend
+│   ├── ollama.py                 # OllamaBackend
+│   ├── anthropic.py              # AnthropicBackend
+│   ├── prompt.py                 # PromptBuilder — source-grounded prompts
+│   ├── evaluator.py              # ResponseEvaluator — grounding check
+│   └── factory.py                # LLMFactory — backend name → class
+│
+├── store/
+│   ├── __init__.py
+│   ├── serializer.py             # Serializer — binary encode/decode
+│   ├── filesystem.py             # FileStore — save/load from disk
+│   ├── project.py                # ProjectStore — multi-document projects
+│   └── lru.py                    # LRUCache — general purpose cache
+│
+├── utils/
+│   ├── __init__.py
+│   ├── hashing.py                # fnv1a, murmur3, djb2, hash_all
+│   ├── text.py                   # tokenize, normalize, sentence_split, word_count
+│   ├── math.py                   # cosine_similarity, dot_product, tfidf_score
+│   ├── noise.py                  # is_url_noise, is_reference_line, filter_concept_noise
+│   ├── patterns.py               # Pre-compiled regex: definitions, headings, references
+│   ├── domain.py                 # Domain keyword dictionaries
+│   ├── metrics.py                # Timing, counters, performance tracking
+│   └── common_words.py           # Stop words, noise terms, technical suffixes
+│
+└── tests/
+    ├── __init__.py
+    ├── conftest.py               # Shared fixtures
+    ├── test_ingest.py
+    ├── test_chunk.py
+    ├── test_index.py
+    ├── test_embed.py
+    ├── test_retrieve.py
+    ├── test_generate.py
+    ├── test_store.py
+    ├── test_integration.py
+    └── benchmarks.py
