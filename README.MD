@@ -1,4 +1,3 @@
-```markdown
 # Engram
 
 **A universal RAG engine that builds permanent, queryable knowledge from any document.**
@@ -1366,13 +1365,3 @@ MIT
 
 ---
 
-## Contributing
-
-Engram is designed to be extended. The key extension points are:
-
-- **Custom parsers**: Inherit from `BaseParser` and register with the format detector.
-- **Custom chunkers**: Inherit from `BaseChunker` and register with the chunker factory.
-- **Custom LLM backends**: Inherit from `LLMBackend` and register with the LLM factory.
-- **Custom embedding backends**: Implement the embedder interface and set on the pipeline.
-- **Custom hash functions**: Add to the `hash_all()` function in `utils/hashing.py`.
-```
